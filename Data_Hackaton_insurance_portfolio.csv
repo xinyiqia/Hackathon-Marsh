@@ -1,0 +1,5 @@
+type,company,price,payment_frequency,bought on,expiration date
+Property,Liberty Mutual,20000,annual,1/1/2006,12/31/2016
+Property,Liberty Mutual,20000,annual,1/1/2017,12/31/2027
+General liability,Progressive Commercial,700,monthly,1/1/2008,12/31/2018
+General liability,Progressive Commercial,700,monthly,1/1/2019,12/31/2029

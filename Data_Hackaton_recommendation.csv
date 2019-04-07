@@ -1,0 +1,37 @@
+ insurance type , insurance name , company , A.M. rating , price , payment_frequency , Select? 
+ Property , Property , Liberty Mutual , A ,20000, annual , Yes 
+ Property , Property , State farm , A ,7000, monthly , Yes 
+ Property , Property , Allstate , A+ ,15000, annual , Yes 
+ Property , Property , Farmers , A ,30000, annual , Yes 
+ Property , Property , Nationwide , A ,25000, annual , Yes 
+ Property , Property , Progressive Commercial , A ,30000, annual , Yes 
+ Casualty , Casualty , Liberty Mutual , A+ ,17000, annual , Yes 
+ Casualty , Casualty , State farm , A ,18000, annual , Yes 
+ Casualty , Casualty , Allstate , A ,15000, annual , Yes 
+ Casualty , Casualty , Farmers , A ,23000, monthly , Yes 
+ Casualty , Casualty , Nationwide , A ,2000, monthly , Yes 
+ Casualty , Casualty , Progressive Commercial , A ,9000, monthly , Yes 
+ General liability , General liability , Insureon , A ,750, annual , Yes 
+ General liability , General liability , State farm , A ,2000, annual , Yes 
+ General liability , General liability , Allstate , A ,3000, annual , Yes 
+ General liability , General liability , Farmers , A ,5000, annual , Yes 
+ General liability , General liability , Nationwide , A ,2500, annual , Yes 
+ General liability , General liability , Progressive Commercial , A+ ,700, monthly , Yes 
+ On demand , Commercial crime , Liberty Mutual , A ,720, per day , Yes 
+ On demand , Commercial crime , State farm , A ,2400, per day , Yes 
+ On demand , Commercial crime , Allstate , A ,1200, per day , Yes 
+ On demand , Commercial crime , Farmers , A ,1680, per day , Yes 
+ On demand , Commercial crime , Nationwide , A ,1440, per day , Yes 
+ On demand , Commercial crime , Progressive Commercial , A ,2640, per day , Yes 
+ On demand , Heights work insurance , Liberty Mutual , A+ ,4800, per day , Yes 
+ On demand , Heights work insurance , State farm , A+ ,7200, per day , Yes 
+ On demand , Heights work insurance , Allstate , A ,10800, per day , Yes 
+ On demand , Heights work insurance , Farmers , A ,4080, per day , Yes 
+ On demand , Heights work insurance , Nationwide , A+ ,5040, per day , Yes 
+ On demand , Heights work insurance , Progressive Commercial , A ,6480, per day , Yes 
+ On demand , Confined spaces insurance , Liberty Mutual , A+ ,4800, per day , Yes 
+ On demand , Confined spaces insurance , State farm , A+ ,7200, per day , Yes 
+ On demand , Confined spaces insurance , Allstate , A ,10800, per day , Yes 
+ On demand , Confined spaces insurance , Farmers , A ,4080, per day , Yes 
+ On demand , Confined spaces insurance , Nationwide , A+ ,5040, per day , Yes 
+ On demand , Confined spaces insurance , Progressive Commercial , A ,6480, per day , Yes 

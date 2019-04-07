@@ -1,0 +1,166 @@
+---
+title: "Breeze"
+output: flexdashboard::flex_dashboard
+runtime: shiny
+---
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(shiny)
+library(rmarkdown)
+library(knitr)
+library(Hmisc)
+library(DT)
+
+library(data.table)
+assignInNamespace("cedta.override", c(data.table:::cedta.override,"rmarkdown"), "data.table")
+
+
+opts_chunk$set(echo = FALSE, comment="", warning = FALSE, message = FALSE, tidy.opts=list(width.cutoff=55), tidy = TRUE)
+
+```
+
+
+```{r read_data, include=FALSE, eval = TRUE}
+data.hackaton.recommendation <- fread(input = "Data_Hackaton_recommendation.csv", verbose = FALSE)
+data.hackaton.insurance.potfolio <- fread(input = "Data_Hackaton_insurance_portfolio.csv", verbose = FALSE)
+data.hackaton.community <- fread(input = "Data_Hackaton_community.csv", verbose = FALSE)
+```
+
+
+```{r constants}
+insurance.name<- c("Property","Casualty","General liability")
+mine.portfolio.name <- c("Property" , "General liability")
+
+```
+
+Registeration
+=====================================  
+
+Row {data-height=800}
+-------------------------------------
+
+```{r Registeration}
+inputPanel(
+  actionLink(inputId = "Registeration_buiness_profile", label = "Import profile from", icon = icon(name = "linkedin", class = NULL, lib = "font-awesome")),
+  fileInput(inputId = "Registeration_import", label = "Choose File", multiple = TRUE)
+
+)
+
+```
+
+
+
+Welcome
+=====================================  
+
+```{r business profile}
+inputPanel(
+  textInput(inputId = "bp_account", label = "Sign In", value = "Construction Company X"),
+  passwordInput(inputId = "bp_password", label = "Password"),
+  actionButton(inputId = "bp_submit", label = "Log In", icon = icon(name = "sign-in-alt", class = NULL, lib = "font-awesome"))
+)
+
+```
+
+
+Recommendation
+===================================
+
+
+Row {data-height=500}
+-------------------------------------
+
+```{r recommendation}
+inputPanel(
+ radioButtons(inputId = "r_recommendation", label = "Recommended for you", choices = insurance.name ),
+ checkboxInput(inputId = "r_sort_price", label = "sort by price", value = FALSE)
+)
+
+#input <- list(r_recommendation = insurance.name[1])
+renderDataTable({
+  subdat <- data.hackaton.recommendation
+  url <- rep(x = '<a href=\"https://google.com\">yes</a>',3)
+  subdat <- data.table(data.hackaton.recommendation[get("insurance type") == input$r_recommendation,][,2:6], data.hackaton.recommendation[,.("Select?" = url)])
+  
+  if(input$r_sort_price == TRUE){
+     subdat <- setorderv(x = subdat, cols = "price")
+  }
+  datatable(data = subdat, escape = FALSE)
+})
+```
+
+On Demand
+=====================================  
+
+
+Row {data-height=800}
+-------------------------------------
+
+```{r On Demand}
+inputPanel(
+      submitButton(text = "Active", icon = icon(name = "toggle-on", class = NULL, lib = "font-awesome")),
+      checkboxInput(inputId = "od_sort_price", label = "sort by price", value = FALSE)
+)
+
+renderDataTable({
+  subdat <- data.hackaton.recommendation
+  url <- rep(x = '<a href=\"https://google.com\">yes</a>',3)
+  subdat <- data.table(data.hackaton.recommendation[get("insurance type") == "On demand",][,2:6], data.hackaton.recommendation[,.("Select?" = url)])
+  
+   if(input$od_sort_price == TRUE){
+     subdat <- setorderv(x = subdat, cols = "price")
+  }
+  datatable(data = subdat, escape = FALSE)
+  
+})
+```
+
+
+My Insurance Portfolio 
+=====================================  
+
+Row {data-height=800}
+-------------------------------------
+
+```{r My Insurance Portfolio}
+inputPanel(
+  selectInput(inputId = "mip_insurance_type", label = "Insurance Type:", choices = mine.portfolio.name, selected = mine.portfolio.name[1]),
+  checkboxInput(inputId = "mip_sort_date", label = "sort date", value = TRUE)
+  )
+
+
+renderDataTable({
+    subdat <- data.hackaton.insurance.potfolio[get("type") == input$mip_insurance_type,]
+   if(input$mip_sort_date == TRUE){
+     subdat <- setorderv(x = subdat, cols = "bought on")
+   }
+     
+  datatable(data = subdat)  
+  
+})
+
+```
+
+Community
+=====================================  
+
+Row {data-height=800}
+-------------------------------------
+
+
+```{r Community}
+
+renderDataTable({
+  subdat <- data.hackaton.community
+  url1 <- rep(x = '<a href=\"https://google.com\">Details</a>',3)
+  url2 <- rep(x = '<a href=\"https://google.com\">join</a>',3)
+  subdat <- data.table(data.hackaton.community[,1],data.hackaton.community[,.("Click to find out more" = url1)], data.hackaton.community[,.("Ready to join?" = url2)])
+  datatable(data = subdat, escape = FALSE)  
+  
+})
+```
+
+Row {data-height=800}
+-------------------------------------
